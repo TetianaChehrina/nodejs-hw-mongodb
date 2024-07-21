@@ -2,10 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import { env } from './utils/env.js';
-import {
-  getAllContactsControler,
-  getContactByIdControler,
-} from './controllers/contacts.js';
+import contactRoutes from './routers/contacts.js';
+import notFoundHandler from './middlewares/notFoundHandler.js';
+import errorHandler from './middlewares/errorHandler.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const PORT = Number(env('PORT', '3000'));
 export const setupServer = () => {
@@ -19,18 +20,9 @@ export const setupServer = () => {
       },
     }),
   );
-
-  app.get('/contacts', getAllContactsControler);
-  app.get('/contacts/:contactId', getContactByIdControler);
-  app.use((req, res, next) => {
-    res.status(404).json({ message: 'Not found' });
-  });
-  app.use((error, req, res, next) => {
-    console.error(error);
-    res.status(500).json({
-      message: 'Internal Server Error',
-    });
-  });
+  app.use(contactRoutes);
+  app.use(notFoundHandler);
+  app.use(errorHandler);
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
