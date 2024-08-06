@@ -23,6 +23,7 @@ export const getAllContactsController = async (req, res, next) => {
       sortOrder,
       filter,
     });
+
     res.status(200).json({
       status: 200,
       message: 'Successfully found contacts',
