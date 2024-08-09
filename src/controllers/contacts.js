@@ -15,13 +15,14 @@ export const getAllContactsController = async (req, res, next) => {
     const { page, perPage } = parsePaginationParams(req.query);
     const { sortBy, sortOrder } = parseSortParams(req.query);
     const filter = parseFilterParams(req.query);
-
+    const userId = req.user._id;
     const contacts = await getAllContacts({
       page,
       perPage,
       sortBy,
       sortOrder,
       filter,
+      userId,
     });
 
     res.status(200).json({
@@ -37,14 +38,14 @@ export const getAllContactsController = async (req, res, next) => {
 
 export const getContactByIdController = async (req, res, next) => {
   try {
-    const { contactId } = req.params;
-    const contact = await getContactById(contactId);
+    const { _id } = req.user;
+    const contact = await getContactById(_id);
     if (!contact) {
-      throw createHttpError(404, 'Student not found');
+      throw createHttpError(404, 'Contact not found');
     }
     res.status(200).json({
       status: 200,
-      message: 'Succesfully found product with id ${contactId}',
+      message: 'Succesfully found contact with id ${contactId}',
       data: contact,
     });
   } catch (error) {
@@ -54,7 +55,7 @@ export const getContactByIdController = async (req, res, next) => {
 
 export const createContactController = async (req, res, next) => {
   try {
-    const contact = await createContact(req.body);
+    const contact = await createContact(req.body, req.user._id);
 
     res.status(201).json({
       status: 201,
@@ -82,15 +83,15 @@ export const deleteContactController = async (req, res, next) => {
 
 export const patchContactController = async (req, res, next) => {
   try {
-    const { contactId } = req.params;
-    const result = await updateContact(contactId, req.body);
+    const { _id } = req.user;
+    const result = await updateContact(_id, req.body);
     if (!result) {
       throw createHttpError(404, 'Contact not found');
     }
 
     res.json({
       status: 200,
-      message: 'Succesfully patch a contact',
+      message: 'Succesfully patched a contact',
       data: result.contact,
     });
   } catch (err) {
