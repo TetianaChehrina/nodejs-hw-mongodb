@@ -30,16 +30,16 @@ contactRouter.post(
   ctrlWrapper(createContactController),
 );
 
-// contactRouter.post(
-//   '',
-//   validateBody(validateContact),
-//   ctrlWrapper(createContactController),
-// ),
-contactRouter.delete(
-  '/:contactId',
-  isValid,
-  ctrlWrapper(deleteContactController),
-);
+contactRouter.post(
+  '',
+  validateBody(createContactSchema),
+  ctrlWrapper(createContactController),
+),
+  contactRouter.delete(
+    '/:contactId',
+    isValid,
+    ctrlWrapper(deleteContactController),
+  );
 contactRouter.patch(
   '/:contactId',
   isValid,
