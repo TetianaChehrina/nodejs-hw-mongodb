@@ -38,18 +38,13 @@ export const getAllContacts = async ({
   };
 };
 
-export const getContactById = async (contactId, userId) => {
-  const contact = await ContactCollection.findOne({
-    userId: userId,
-  });
+export const getContactById = async (userId) => {
+  const contact = await ContactCollection.findOne({ userId });
   return contact;
 };
 
-export const createContact = async (payload, userId) => {
-  const contact = await ContactCollection.create({
-    ...payload,
-    userId: userId,
-  });
+export const createContact = async (contactData) => {
+  const contact = await ContactCollection.create(contactData);
   return contact;
 };
 
