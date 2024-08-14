@@ -58,13 +58,13 @@ export const deleteContact = async (contactId, userId) => {
 
 export const updateContact = async (
   contactId,
-  payload,
   userId,
+  contactData,
   option = {},
 ) => {
   const result = await ContactCollection.findOneAndUpdate(
     { _id: contactId, userId },
-    payload,
+    contactData,
     {
       new: true,
       includeResultMetadata: true,
