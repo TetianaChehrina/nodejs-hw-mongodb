@@ -23,6 +23,7 @@ const contactSchema = new Schema(
       default: 'personal',
     },
     userId: { type: String, required: true },
+    photo: { type: String },
   },
   {
     timestamps: true,
