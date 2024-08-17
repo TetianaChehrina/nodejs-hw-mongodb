@@ -1,0 +1,52 @@
+tags:
+  - Auth
+summary: Register user
+operationId: createUser
+description: 'Refresh session'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            description: 'User name'
+            type: string
+            example: "John Doe"
+         email:
+            description: 'User email'
+            type: string
+            example: qwerty@gmail.com
+          password:
+            description: 'User password'
+            type: string
+            example: "12345"
+responses:
+  '200':
+    description: 'User registration'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully registered user!
+            data:
+              type: object
+              $ref: '../../components/schemas/auth.yaml'
+  '409':
+    $ref: '../../components/responses/409.yaml'

@@ -1,0 +1,18 @@
+type: object
+required:
+  - name
+  - email
+  - password
+properties:
+  name:
+    description: 'Registration name'
+    type: string
+    example: 'John Doe'
+  email:
+    description: 'Registration email'
+    type: string
+    example: 'qwert@gmail.com'
+  password:
+    description: 'Registration password'
+    type: string
+    example: '12345'
