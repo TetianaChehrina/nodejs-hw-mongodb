@@ -12,33 +12,32 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  - url: http://localhost:4000
   - url: http://nodejs-hw-mongodb-crgd.onrender.com
- paths:
-   /contacts/{id}:
-     get:
+paths:
+  /contacts/{id}:
+    get:
       $ref: '../swagger/paths/{id}/get.yaml'
     delete:
       $ref: '../swagger/paths/{id}/delete.yaml'
     patch:
       $ref: '../swagger/paths/{id}/patch.yaml'
-    /contacts:
-     get:
-       $ref: '../swagger/paths/get.yaml'
-     post:
-       $ref: '../swagger/paths/post.yaml'
-    /auth/register:
-     post:
-       $ref: '../swagger/paths/register/post.yaml'
-    /auth/login:
-     post:
-       $ref: '../swagger/paths/login/post.yaml'
-    /auth/logout:
-     post:
-       $ref: '../swagger/paths/logout/post.yaml'
-    /auth/refresh:
-     post:
-       $ref: '../swagger/paths/refreshSession/post.yaml'
+  /contacts:
+    get:
+      $ref: '../swagger/paths/get.yaml'
+    post:
+      $ref: '../swagger/paths/post.yaml'
+  /auth/register:
+    post:
+      $ref: '../swagger/paths/register/post.yaml'
+  /auth/login:
+    post:
+      $ref: '../swagger/paths/login/post.yaml'
+  /auth/logout:
+    post:
+      $ref: '../swagger/paths/logout/post.yaml'
+  /auth/refresh:
+    post:
+      $ref: '../swagger/paths/refreshSession/post.yaml'
 components:
   securitySchemes:
     bearerAuth:

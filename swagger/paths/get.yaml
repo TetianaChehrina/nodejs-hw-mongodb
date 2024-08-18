@@ -12,34 +12,35 @@ parameters:
       type: integer
       example: 2
   - in: query
-  name: perPage
-  schema:
-    type: integer
-    example: 5
-   - in: query
-  name: sortBy
-  schema:
-    type: string
-    example: 'name'
+    name: perPage
+    schema:
+      type: integer
+      example: 5
   - in: query
-  name: sortOrder
-  schema:
-    type: string
-    enum: ['asc', 'desc']
+    name: sortBy
+    schema:
+      type: string
+      example: 'name'
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+      enum: ['asc', 'desc']
     example: 'asc'
   - in: query
-  name: contactType
-  schema:
-    type: stringenum: ['work', 'home', 'personal']
+    name: contactType
+    schema:
+      type: string
+      enum: ['work', 'home', 'personal']
     example: work
   - in: query
-  name: isFavourite
-  schema:
-    type: boolean
-    example: true
+    name: isFavourite
+    schema:
+      type: boolean
+      example: true
 responses:
   '200':
-    description: "Successfully found contacts"
+    description: 'Successfully found contacts'
     content:
       application/json:
         schema:
@@ -54,8 +55,8 @@ responses:
               example: 200
             message:
               type: string
-              example: "Successfully found contacts"
-          data:
+              example: 'Successfully found contacts'
+            data:
               type: object
               required:
                 - data
@@ -66,8 +67,10 @@ responses:
                 - hasNextPage
                 - hasPreviousPage
               properties:
-                data: array
-                items: $ref '../components/schemas/contacts.yaml'
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/contacts.yaml'
                 page:
                   type: number
                   example: 1
@@ -87,4 +90,4 @@ responses:
                   type: boolean
                   example: true
   '401':
-    $ref: '../../../components/responses/401.yaml'
+    $ref: ../components/responses/401.yaml

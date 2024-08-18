@@ -18,15 +18,15 @@ requestBody:
           name:
             description: 'User name'
             type: string
-            example: "John Doe"
-         email:
+            example: 'John Doe'
+          email:
             description: 'User email'
             type: string
             example: qwerty@gmail.com
           password:
             description: 'User password'
             type: string
-            example: "12345"
+            example: '12345'
 responses:
   '200':
     description: 'User registration'

@@ -27,16 +27,10 @@ requestBody:
           refreshToken:
             description: 'Access token'
             type: string
-          accessToken:
-            description: 'Access token'
-            type: string
-          refreshToken:
-            description: 'Refresh token'
-            type: string
           accessTokenValidUntil:
             description: 'Access token valid until'
             type: number
-          accessTokenValidUntil:
+          refreshTokenValidUntil:
             description: 'Refresh token valid until'
             type: string
 responses:
@@ -61,4 +55,4 @@ responses:
               type: object
               $ref: '../../components/schemas/session.yaml'
   '401':
-    $ref: '../../components/responses/404.yaml'
+    $ref: '../../components/responses/401.yaml'
